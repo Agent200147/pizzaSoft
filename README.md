@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+# Одностраничное приложение для управления данными сотрудников компании
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Данное приложение разработано в рамках тестового задания и предоставляет возможность просмотра и редактирования данных сотрудников компании. Внешний вид приложения адаптивен и корректно отображается на различных устройствах.
 
-Currently, two official plugins are available:
+## Описание логики работы приложения
+1. При открытии приложения отображается список сотрудников и форма для фильтрации данных. Каждый сотрудник в списке представлен с указанием его имени, должности и номера телефона. Доступна сортировка списка по имени и дате рождения. Фильтрация сотрудников осуществляется по должности и статусу. Выбор должности производится из выпадающего списка (Повар, Официант, Водитель), а статус определяется чекбоксом "в архиве".
+2. При клике на сотрудника в списке открывается страница с формой для редактирования данных о сотруднике. Форма содержит поля: имя сотрудника (текстовое поле), телефон (текстовое поле с маской), дата рождения (текстовое поле с маской), должность (выпадающий список: Повар, Официант, Водитель) и статус (чекбокс "в архиве").
+3. Приложение позволяет добавлять новых сотрудников в систему.
+4. Реализован роутинг для навигации по разделам приложения.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Используемые технологии
+1. React с использованием `Redux Toolkit` для управления состоянием
+2. Применение CSS препроцессора `SASS(SCSS)`
+3. Для роутинга использован `react-router-dom`
+4. Также частично реализованы тесты, остальные банально не успел сделать(
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Требования к исходному коду
+1. Код должен быть легко читаемым для других разработчиков.
+2. Структура проекта разбита на модули для более удобного управления кодом.
