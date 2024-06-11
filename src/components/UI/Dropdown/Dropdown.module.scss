@@ -1,0 +1,93 @@
+@import '@/scss/mixins';
+@import '@/scss/functions';
+@import '@/scss/variables';
+@import '@/scss/media';
+
+$fz: 2.4;
+.dropDown {
+  position: relative;
+
+  button {
+    //font-size: #{$fz}em;
+    @include flex-align-gap(0.5em);
+    justify-content: space-between;
+    width: 100%;
+
+    background: var(--white);
+
+    padding: calculate-relative(0.8em, $fz) calculate-relative(1.6em, $fz);
+
+    border-radius: calculate-relative(0.8em, $fz);
+    border: 1px solid #dcdcdc;
+
+    span {
+      white-space: nowrap;
+    }
+
+    .placeholder {
+      color: var(--main-color);
+    }
+
+    .halfArrowSvgWrapper {
+      max-width: 0.6em;
+      transform: rotate(-180deg);
+
+      @include flex-center();
+      @include transition(0.15s, transform);
+
+      &.rotated {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  &.dropDownOpened button {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    //border-bottom-color: transparent;
+  }
+}
+
+.list {
+  position: absolute;
+  right: 0;
+  //margin-top: 0.4em;
+  //padding: 0.6em;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  //row-gap: 0.2em;
+  background: var(--white);
+
+  //border-radius: calculate-relative(0.8em, $fz);
+  //border-radius: 0.5em;
+  //box-shadow: 0 calculate-relative(0.8em, $fz) calculate-relative(1.5em, $fz) rgba(0, 0, 0, 0.08);
+
+  border: 1px solid #dcdcdc;
+  border-top: none;
+  border-bottom-left-radius: calculate-relative(0.8em, $fz);
+  border-bottom-right-radius: calculate-relative(0.8em, $fz);
+  z-index: 1;
+
+  li {
+    //margin-top: calculate-relative(0.5em, $fz);
+    //font-size: #{$fz}em;
+    white-space: nowrap;
+
+    padding: calculate-relative(0.8em, $fz) calculate-relative(1.6em, $fz);
+    background: var(--white);
+
+    cursor: pointer;
+
+    @include hover {
+      background: #e8e8e8;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: calculate-relative(0.8em, $fz);
+      border-bottom-right-radius: calculate-relative(0.8em, $fz);
+    }
+  }
+}

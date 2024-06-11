@@ -1,0 +1,3 @@
+@function calculate-relative($unit, $fz-ratio) {
+  @return calc($unit / $fz-ratio);
+}

@@ -1,0 +1,66 @@
+@import '@/scss/functions';
+@import '@/scss/variables';
+@import '@/scss/mixins';
+@import '@/scss/media';
+
+.employee {
+  padding: 2em;
+
+  display: flex;
+  column-gap: 1.5em;
+
+  border-radius: 0.5em;
+  background: var(--white);
+  box-shadow: 0 0.2em 0.2em 0.1em rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+
+  @include transition(0.15s, filter);
+
+  &.archived {
+    background: #c4d9d5;
+  }
+
+  @include hover {
+    filter: brightness(90%);
+  }
+
+  .item {
+    $fz: 2.4;
+    font-size: #{$fz}em;
+    font-weight: 500;
+    color: var(--main-color-dark);
+
+    flex: 1;
+  }
+
+  .name {
+    flex: 1.4;
+  }
+
+  .jobTitle {
+    flex: 0.7
+  }
+
+  @include mobile {
+    display: block;
+    padding: 0 1.5em;
+
+    .item {
+      font-size: calc(2em + (32 - 20) * ((100vw - 32rem) / (767 - 320)));
+
+      padding: 0.6em 0.4em;
+
+      @include flex-align-gap(1em);
+      justify-content: space-between;
+
+      &:not(:last-child) {
+        border-bottom: 1px dashed gray;
+      }
+
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}

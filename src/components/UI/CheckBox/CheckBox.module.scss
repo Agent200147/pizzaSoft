@@ -1,0 +1,53 @@
+@import '@/scss/mixins';
+@import '@/scss/functions';
+@import '@/scss/variables';
+
+$fz: 2.4;
+.checkBox {
+  width: fit-content;
+  //margin-block: 1.5em;
+  align-self: center;
+
+  input {
+    display: none;
+
+    &:checked + label .customCheckboxWrapper {
+      background: var(--main-color);
+
+      .none {
+        background: gray;
+      }
+
+      svg {
+        display: block;
+      }
+    }
+
+  }
+
+  label {
+    @include flex-align-gap(calculate-relative(1em, $fz));
+    @include user-select-none();
+
+    .text {
+      //$fz: 2.4;
+      //font-size: #{$fz}em;
+      white-space: nowrap;
+    }
+
+    .customCheckboxWrapper {
+      color: var(--bg-color);
+      padding: calculate-relative(0.3em, $fz);
+      height: calculate-relative(2.3em, $fz);
+      aspect-ratio: 1 / 1;
+      background: var(--white);
+      border-radius: calculate-relative(0.5em, $fz);
+
+      transition: 0.15s all;
+
+      svg {
+        display: none;
+      }
+    }
+  }
+}

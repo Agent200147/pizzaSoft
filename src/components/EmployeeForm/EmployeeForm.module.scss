@@ -1,0 +1,81 @@
+@import '@/scss/mixins';
+@import '@/scss/functions';
+@import '@/scss/variables';
+@import '@/scss/media';
+
+.formContainer {
+  @include wrapper(67em);
+  font-weight: 500;
+
+  @include mobile {
+    font-size: calc(0.75em + (10 - 7.5) * ((100vw - 32rem) / (767 - 320)));
+  }
+
+  h1 {
+    $fz: 4.2;
+    font-size: #{$fz}em;
+    font-weight: 600;
+    color: var(--main-color-dark);
+    text-align: center;
+
+    @include mobile {
+      font-size: 3.2em;
+    }
+
+    margin-block: calculate-relative(1.5em, $fz);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2em;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+  }
+
+  input {
+    font-weight: 500;
+
+    $fz: 2.4;
+    font-size: #{$fz}em;
+    background: var(--white);
+
+    color: var(--main-color-black);
+    font-family: "Montserrat", sans-serif;
+
+    padding: calculate-relative(0.8em, $fz) calculate-relative(1.6em, $fz);
+    border-radius: calculate-relative(0.7em, $fz);
+
+    &:focus {
+      outline: 2px solid var(--main-color);
+    }
+
+    &.invalid {
+      outline: 2px solid var(--red);
+    }
+
+  }
+  > button {
+    $fz: 2.4;
+    font-size: #{$fz}em;
+    background: var(--white);
+    background: var(--main-color-dark);
+    color: var(--bg-color);
+
+    padding: calculate-relative(1.2em, $fz) calculate-relative(1.8em, $fz);
+    border-radius: calculate-relative(0.7em, $fz);
+    @include transition(0.15s, background);
+
+    @include hover {
+      background: var(--main-color);
+    }
+  }
+}
+
+.dropDown, .checkbox {
+  font-size: 2.4em;
+}

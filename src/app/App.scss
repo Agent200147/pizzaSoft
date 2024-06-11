@@ -1,0 +1,36 @@
+@import '@/scss/variables';
+@import '@/scss/media';
+@import '@/scss/utils';
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("@/assets/font/Montserrat.ttf") format("truetype");
+}
+
+html {
+    font-size: 62.5%;
+    scrollbar-gutter: stable;
+    @include laptop-above {
+        font-size: calc(((100vw) / $desktop-reference * 10));
+    }
+
+    @include laptop {
+        font-size: calc(((100vw) / $desktop-reference * 10) + 2px);
+
+    }
+
+    @include tablet {
+        font-size: calc(((100vw) / $desktop-reference * 10) + 4.3px);
+    }
+
+    @include mobile {
+        font-size: 62.5%;
+    }
+}
+
+body {
+    color: var(--main-color-black);
+    font-weight: 500;
+    background: var(--bg-color);
+    font-family: "Montserrat", sans-serif;
+}

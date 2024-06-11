@@ -1,0 +1,155 @@
+@import '@/scss/mixins';
+@import '@/scss/functions';
+@import '@/scss/variables';
+@import '@/scss/media';
+
+.section__header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+}
+
+.topHeader {
+  @include flex-align-gap(1.5em);
+  justify-content: space-between;
+
+  h1 {
+    $fz: 4.2;
+    font-size: #{$fz}em;
+    font-weight: 600;
+    color: var(--main-color-dark);
+  }
+
+  .btnAdd {
+    @include flex-center();
+
+    $fz: 3.6;
+    font-size: #{$fz}em;
+
+    width: calculate-relative(6.4em, $fz);
+    aspect-ratio: 1 / 1;
+
+    border-radius: calculate-relative(1.1em, $fz);
+    background: var(--main-color-dark);
+    color: var(--bg-color);
+
+    @include transition(0.15s, background);
+
+    @include hover {
+      background: var(--main-color);
+    }
+  }
+}
+
+.topControls {
+  @include flex-align-gap(1.5em);
+  justify-content: space-between;
+  row-gap: 1em;
+  flex-wrap: wrap;
+
+  padding-inline: 2em;
+
+  @include mobile {
+    padding-inline: 0;
+  }
+
+  & > * {
+    flex: 1;
+  }
+
+  .jobTitleDropDown {
+    $fz: 2.4;
+    font-size: #{$fz}em;
+    min-width: 11em;
+  }
+}
+
+
+
+.listControls {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1.5em;
+  padding-inline: 2em;
+
+  @include mobile {
+    padding-inline: 0;
+  }
+
+  .jobTitle {
+    flex: 0.7;
+  }
+
+}
+
+.listControl {
+  flex: 1;
+
+  $fz: 2.4;
+  font-size: #{$fz}em;
+  white-space: nowrap;
+
+  &.dateBirthSort {
+    flex: 1.4;
+
+    @include mobile {
+      flex: none;
+    }
+  }
+}
+
+.listSort {
+  $fz: 2.4;
+  @include flex-align-gap(calculate-relative(0.5em, $fz));
+
+  .svgWrapper {
+    @include flex-center();
+    width: calculate-relative(2.4em, $fz);
+    @include transition(0.15s, transform);
+
+    &.none span {
+      width: calculate-relative(0.7em, $fz);
+      aspect-ratio: 1 / 1;
+      background: currentColor;
+      border-radius: 50%;
+    }
+    transform: rotateX(180deg);
+
+    &.none svg {
+      display: none;
+    }
+
+    &.asc {
+      transform: rotateX(180deg);
+    }
+
+    &.desc {
+      transform: rotateX(0);
+    }
+  }
+}
+
+.checkbox {
+  flex: 0.7;
+
+  $fz: 2.4;
+  font-size: #{$fz}em;
+
+  @include mobile {
+    flex: none;
+  }
+}
+
+.name {
+  flex: 1.4;
+
+  @include mobile {
+    flex: none;
+  }
+}

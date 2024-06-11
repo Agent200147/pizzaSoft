@@ -1,0 +1,32 @@
+@mixin flex-align-gap($gap: 0) {
+  display: flex;
+  align-items: center;
+  column-gap: $gap;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin wrapper($max-width) {
+  $padding: 2em;
+  max-width: $max-width + $padding * 2;
+  padding-inline: $padding;
+  margin-inline: auto;
+}
+
+@mixin user-select-none() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin transition($seconds, $property: all, $type: ease-in-out,) {
+  -webkit-transition: $property $seconds $type;
+  -moz-transition: $property $seconds $type;
+  -o-transition: $property $seconds $type;
+  transition: $property $seconds $type;
+}

@@ -1,0 +1,18 @@
+@import '@/scss/mixins';
+@import '@/scss/media';
+
+.section {
+  @include wrapper(120em);
+  margin-block: 10em;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+
+  @include mobile {
+    margin-block: 7em;
+    font-size: calc(0.8em + (10 - 8) * ((100vw - 32rem) / (767 - 320)));
+
+    row-gap: 2em;
+  }
+}

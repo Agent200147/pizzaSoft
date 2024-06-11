@@ -1,0 +1,36 @@
+@import '@/scss/mixins';
+@import '@/scss/variables';
+@import '@/scss/media';
+
+.header {
+  .wrapper {
+    @include wrapper(130em);
+    padding-block: 1em;
+  }
+
+  .logo {
+    @include flex-align-gap(1em);
+
+    .logoImg {
+      max-width: 7em;
+
+      img {
+        border-radius: 0.7em;
+      }
+    }
+
+    .logoText {
+      font-size: 3.6em;
+      font-weight: 500;
+      color: var(--main-color-dark);
+    }
+  }
+
+  @include mobile {
+    font-size: calc(0.8em + (10 - 8) * ((100vw - 32rem) / (767 - 320)));
+
+    .logoText {
+     display: none;
+    }
+  }
+}

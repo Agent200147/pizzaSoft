@@ -1,0 +1,11 @@
+@import '@/scss/mixins';
+@import '@/scss/functions';
+@import '@/scss/media';
+
+.section {
+  margin-top: 15em;
+
+  @include mobile {
+    margin-top: 11em;
+  }
+}

@@ -1,0 +1,17 @@
+@import '@/scss/functions';
+@import '@/scss/variables';
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.4em;
+}
+
+.messageEmpty {
+  $fz: 3.2;
+  font-size: #{$fz}em;
+  color: var(--main-color);
+  text-align: center;
+
+  margin-block: calculate-relative(4em, $fz);
+}

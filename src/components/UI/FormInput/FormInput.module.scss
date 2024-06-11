@@ -1,0 +1,30 @@
+.input {
+  position: relative;
+  font-size: 1.6em;
+  font-weight: 400;
+  width: 100%;
+  padding-inline: 6px;
+  padding-bottom: 7px;
+  padding-top: 0;
+  border-bottom: 1px solid var(--border-color);
+
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+
+  &:focus {
+    border-bottom: 1px solid var(--main-color-dark);
+  }
+
+  .inValidInput {
+    border-bottom: 1px solid #ef0000;
+  }
+}
+
+.error {
+  position: absolute;
+  font-size: 1.4em;
+  color: #ef0000;
+  margin-top: 4px;
+}
