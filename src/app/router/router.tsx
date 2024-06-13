@@ -10,6 +10,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
+
         children: [
             {
                 index: true,
@@ -31,4 +32,6 @@ export const router = createBrowserRouter([
             },
         ]
     }
-])
+], {
+    basename: '/pizzasoft/',
+})
