@@ -37,8 +37,6 @@ const EmployeeListControls: FC<EmployeeListProps> = ({ employees, setModifiedEmp
     const [checkBoxValue, setCheckBoxValue] = useState(false)
     const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTION)
 
-    const employeesRoles = [...new Set(employees.map(emp => emp.role))]
-
     const handleSortByName = () => {
         let sortedEmployees
 
@@ -56,7 +54,6 @@ const EmployeeListControls: FC<EmployeeListProps> = ({ employees, setModifiedEmp
         setCopiedEmployees(sortedEmployees)
         setSortByBirthdayDirection('none')
         setModifiedEmployeesList(sortedEmployees)
-
     }
 
     const handleSortByBirthday = () => {
@@ -89,23 +86,38 @@ const EmployeeListControls: FC<EmployeeListProps> = ({ employees, setModifiedEmp
         setModifiedEmployeesList(sortedEmployees)
     }
 
-    useEffect(() => {
+
+    const handleFilterByRole = (role: string) => {
         let filteredEmployees
 
-        if (selectedOption === DEFAULT_OPTION) {
-            filteredEmployees = employees.filter(emp => emp.isArchive === checkBoxValue);
+        if (role === DEFAULT_OPTION) {
+            filteredEmployees = employees.filter(emp => emp.isArchive === checkBoxValue)
         } else {
-            filteredEmployees = employees.filter(emp => emp.role === selectedOption && emp.isArchive === checkBoxValue);
+            filteredEmployees = employees.filter(emp => emp.role === role && emp.isArchive === checkBoxValue)
         }
 
         setCopiedEmployees(filteredEmployees)
         setFilteredEmployees(filteredEmployees)
         setModifiedEmployeesList(filteredEmployees)
 
+        setSelectedOption(role)
         setSortByNameDirection('none')
         setSortByBirthdayDirection('none')
-    }, [selectedOption])
+    }
 
+    useEffect(() => {
+        let filteredEmployees
+
+        if (selectedOption === DEFAULT_OPTION) {
+            filteredEmployees = employees.filter(emp => emp.isArchive === checkBoxValue)
+        } else {
+            filteredEmployees = employees.filter(emp => emp.role === selectedOption && emp.isArchive === checkBoxValue)
+        }
+
+        setCopiedEmployees(filteredEmployees)
+        setFilteredEmployees(filteredEmployees)
+        setModifiedEmployeesList(filteredEmployees)
+    }, [])
 
     const handleCheckBoxChange = (value: boolean) => {
         setCheckBoxValue(value)
@@ -135,7 +147,7 @@ const EmployeeListControls: FC<EmployeeListProps> = ({ employees, setModifiedEmp
 
                 <div className={styles.topControls}>
                     <div className={cn([styles.listControl, styles.listSort, styles.dateBirthSort])}>
-                        <button onClick={handleSortByBirthday}>Дата рождения</button>
+                        <button onClick={handleSortByBirthday} data-testid='sortByBirthdayBtn'>Дата рождения</button>
                         <div className={cn([styles.svgWrapper, rotation[sortByBirthdayDirection]])}>
                             <ArrowSvg />
                             <span></span>
@@ -148,21 +160,24 @@ const EmployeeListControls: FC<EmployeeListProps> = ({ employees, setModifiedEmp
                             <span></span>
                         </div>
                     </div>
-                    <CheckBox classNames={[styles.checkbox, 'hidden-mobile']} onChange={handleCheckBoxChange} />
-                    <Dropdown classNames={styles.jobTitleDropDown} defaultOption={DEFAULT_OPTION} options={employeesRoles} handleDropdownSelection={setSelectedOption} />
-
+                    <div className={cn([styles.checkboxWrapper, 'hidden-mobile'])}>
+                        <CheckBox classNames={[styles.checkbox]} onChange={handleCheckBoxChange} dataTestId='filterByIsArchiveCheckbox'/>
+                    </div>
+                    <Dropdown classNames={[styles.jobTitleDropDown]} defaultOption={DEFAULT_OPTION} options={employeesRoles} handleDropdownSelection={handleFilterByRole} dataTestId='filterByJobTitle'/>
                 </div>
             </div>
             <div className={styles.listControls}>
                 <div className={cn([styles.listControl, styles.listSort, styles.name, 'hidden-mobile'])}>
-                    <button onClick={handleSortByName} >Имя фамилия</button>
+                    <button onClick={handleSortByName} data-testid='sortByNameBtn'>Имя фамилия</button>
                     <div className={cn([styles.svgWrapper, rotation[sortByNameDirection]])}>
                         <ArrowSvg />
                         <span></span>
                     </div>
                 </div>
 
-                <CheckBox classNames={[styles.checkbox, 'show-mobile']} onChange={handleCheckBoxChange} />
+                <div className={cn([styles.checkboxWrapper, 'show-mobile'])}>
+                    <CheckBox classNames={[styles.checkbox]} onChange={handleCheckBoxChange} />
+                </div>
 
                 <div className={ cn([styles.listControl, styles.jobTitle, 'hidden-mobile'])}>Должность</div>
                 <div className={cn([styles.listControl, styles.phoneNumber, 'hidden-mobile'])}>Номер телефона</div>

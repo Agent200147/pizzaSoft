@@ -1,4 +1,3 @@
-import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import EmployeeList from "./EmployeeList";
 import employeesJson from '@/data/employees.json'
@@ -7,14 +6,19 @@ import { withMemoryRouteAndReduxProvider } from "@/utils/withMemoryRouter";
 describe('EmployeeList', () => {
     test('renders list', async () => {
         render(withMemoryRouteAndReduxProvider(<EmployeeList employees={employeesJson}/>))
-        const employees = screen.getAllByTestId('employee-item')
+
+        const { getAllByTestId } = screen
+
+        const employees = getAllByTestId('employee-item')
         expect(employees).toHaveLength(employeesJson.length)
-        // expect(users).toHaveLength(2);
     })
 
     test('correct href containing', async () => {
         render(withMemoryRouteAndReduxProvider(<EmployeeList employees={employeesJson}/>))
-        const employees = screen.getAllByTestId('employee-item')
+
+        const { getAllByTestId } = screen
+
+        const employees = getAllByTestId('employee-item')
         employeesJson.forEach((employee, index) => {
             expect(employees[index]).toHaveAttribute('href', `/employee/edit/${employee.id}`)
         })
@@ -22,7 +26,10 @@ describe('EmployeeList', () => {
 
     test('list items with correct employee data', async () => {
         render(withMemoryRouteAndReduxProvider(<EmployeeList employees={employeesJson}/>))
-        const employees = screen.getAllByTestId('employee-item')
+
+        const { getAllByTestId } = screen
+
+        const employees = getAllByTestId('employee-item')
 
         employeesJson.forEach((employee, index) => {
             expect(employees[index]).toHaveAttribute('href', `/employee/edit/${employee.id}`)
@@ -34,7 +41,10 @@ describe('EmployeeList', () => {
 
     test('empty list message', async () => {
         render(withMemoryRouteAndReduxProvider(<EmployeeList employees={[]}/>))
-        const message = screen.getByText('Упс! Кажется сотрудники не найдены')
+
+        const { getByText } = screen
+
+        const message = getByText('Упс! Кажется сотрудники не найдены')
         expect(message).toBeInTheDocument()
     })
 })

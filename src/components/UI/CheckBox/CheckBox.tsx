@@ -12,15 +12,16 @@ type CheckBoxProps = {
     classNames?: string[];
     onChange?: (value: boolean) => void
     name?: keyof EmployeeFormDataType,
-    register?: UseFormRegister<EmployeeFormDataType>
+    register?: UseFormRegister<EmployeeFormDataType>,
+    dataTestId?: string,
 }
 
-const CheckBox: FC<CheckBoxProps> = ({classNames = [], onChange, name, register }) => {
+const CheckBox: FC<CheckBoxProps> = ({classNames = [], onChange, name, register, dataTestId }) => {
     const checkBoxId = useId()
 
     return (
         <div className={cn([styles.checkBox, ...classNames])}>
-            <input onChange={(e) => onChange && onChange(e.target.checked)} {...register && name && register(name)} type="checkbox" id={checkBoxId}/>
+            <input onChange={(e) => onChange && onChange(e.target.checked)} {...register && name && register(name)} type="checkbox" id={checkBoxId} data-testid={dataTestId}/>
             <label htmlFor={checkBoxId}>
                 <span className={styles.text}>В архиве</span>
                 <span className={styles.customCheckboxWrapper}>

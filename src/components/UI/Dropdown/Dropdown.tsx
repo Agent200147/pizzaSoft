@@ -10,14 +10,15 @@ import 'react-dropdown/style.css';
 import HalfArrowSvg from "@/components/UI/SvgIcons/HalfArrow.svg";
 
 type DropdownProps = {
-    classNames: string | string[],
+    classNames: string[],
     defaultOption?: string,
     placeholder?: string,
     options: string[],
     handleDropdownSelection?: (option: string) => void,
+    dataTestId?: string
 }
 
-const Dropdown: FC<DropdownProps> = ({ classNames, defaultOption, placeholder, options, handleDropdownSelection }) => {
+const Dropdown: FC<DropdownProps> = ({ classNames = [], defaultOption, placeholder, options, handleDropdownSelection, dataTestId }) => {
     const [selectedOption, setSelectedOption] = useState(defaultOption)
     const [isShow, setIsShow] = useState(false)
     const dropDownRef = useRef<HTMLDivElement>(null)
@@ -50,8 +51,8 @@ const Dropdown: FC<DropdownProps> = ({ classNames, defaultOption, placeholder, o
 
 
     return (
-        <div ref={dropDownRef} className={cn([styles.dropDown, classNames, isShow ? styles.dropDownOpened : ''])}>
-            <button type='button' onClick={() => setIsShow(prev => !prev)}>
+        <div ref={dropDownRef} className={cn([styles.dropDown, ...classNames, isShow ? styles.dropDownOpened : ''])}>
+            <button type='button' onClick={() => setIsShow(prev => !prev)} data-testid={dataTestId}>
                 {
                     placeholder && !selectedOption
                         ? <span className={styles.placeholder}>{placeholder}</span>
@@ -65,9 +66,9 @@ const Dropdown: FC<DropdownProps> = ({ classNames, defaultOption, placeholder, o
             {
                 isShow &&
                 <ul className={styles.list}>
-                    {defaultOption && <li onClick={() => handleSelectOption(defaultOption)}>{defaultOption}</li>}
+                    {defaultOption && <li onClick={() => handleSelectOption(defaultOption)} data-testid={`${defaultOption}-option`}>{defaultOption}</li>}
                     {options.map((opt, index) => {
-                        if (opt !== defaultOption) return <li key={index} onClick={() => handleSelectOption(opt)}>{opt}</li>
+                        if (opt !== defaultOption) return <li key={index} onClick={() => handleSelectOption(opt)} data-testid={`${opt}-option`}>{opt}</li>
                     })}
                 </ul>
             }

@@ -14,6 +14,7 @@ const New = () => {
     const navigate = useNavigate()
 
     const onSubmit = (data: Omit<EmployeeFormDataType, 'id'>) => {
+        console.log(data)
         dispatch(addEmployee({id: generateUniqueId(), ...data}))
         navigate("/")
     }

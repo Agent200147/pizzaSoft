@@ -1,7 +1,6 @@
-import { BrowserRouter, MemoryRouter} from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import EmployeeItem from "./EmployeeItem";
-import {withMemoryRouteAndReduxProvider} from "@/utils/withMemoryRouter";
+import { withMemoryRouteAndReduxProvider } from "@/utils/withMemoryRouter";
 
 
 describe('EmployeeItem', () => {
@@ -16,7 +15,9 @@ describe('EmployeeItem', () => {
         }
         render(withMemoryRouteAndReduxProvider(<EmployeeItem employee={employee}/>))
 
-        const employeeElement = screen.getByTestId('employee-item')
+        const { getByTestId } = screen
+
+        const employeeElement = getByTestId('employee-item')
 
         expect(employeeElement).toHaveAttribute('href', `/employee/edit/${employee.id}`)
         expect(employeeElement).toHaveTextContent(employee.name)
@@ -35,7 +36,9 @@ describe('EmployeeItem', () => {
         }
         render(withMemoryRouteAndReduxProvider(<EmployeeItem employee={archivedEmployee}/>))
 
-        const employeeElement = screen.getByTestId('employee-item')
+        const { getByTestId } = screen
+
+        const employeeElement = getByTestId('employee-item')
         expect(employeeElement).toHaveClass('archived')
     })
 })

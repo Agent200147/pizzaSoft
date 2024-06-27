@@ -54,12 +54,24 @@
       outline: 2px solid var(--main-color);
     }
 
-    &.invalid {
-      outline: 2px solid var(--red);
-    }
-
   }
-  > button {
+
+  .dropDown {
+    $fz: 2.4;
+    font-size: #{$fz}em;
+    border-radius: calculate-relative(0.7em, $fz);
+  }
+
+  .checkbox {
+    $fz: 2.4;
+    font-size: #{$fz}em;
+  }
+
+  .invalid {
+    outline: 2px solid var(--red);
+  }
+
+  .submitBtn {
     $fz: 2.4;
     font-size: #{$fz}em;
     background: var(--white);
@@ -74,8 +86,4 @@
       background: var(--main-color);
     }
   }
-}
-
-.dropDown, .checkbox {
-  font-size: 2.4em;
 }

@@ -70,8 +70,6 @@
   }
 }
 
-
-
 .listControls {
   display: flex;
   justify-content: space-between;
@@ -135,15 +133,19 @@
   }
 }
 
-.checkbox {
+.checkboxWrapper {
   flex: 0.7;
 
-  $fz: 2.4;
-  font-size: #{$fz}em;
+  .checkbox {
 
-  @include mobile {
-    flex: none;
+    $fz: 2.4;
+    font-size: #{$fz}em;
+
+    @include mobile {
+      flex: none;
+    }
   }
+
 }
 
 .name {

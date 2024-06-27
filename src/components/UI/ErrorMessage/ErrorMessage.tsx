@@ -8,7 +8,7 @@ type ErrorMessageProps = {
 
 
 const ErrorMessage: FC<ErrorMessageProps> = ({ errorMessage }) => {
-    return errorMessage && <div className={styles.errorText}>{errorMessage}</div>
+    return errorMessage && <div data-testid='form-error' className={styles.errorText}>{errorMessage}</div>
 }
 
 export default ErrorMessage
